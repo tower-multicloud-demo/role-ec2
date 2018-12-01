@@ -1,0 +1,24 @@
+---
+- name: Gather details for instances name {{ ec2_scope }}
+  ec2_instance_facts:
+      region: "{{ ec2_region }}"
+      filters:
+        "tag:Name": "{{ ec2_delete }}"
+  register: ec2
+
+- name: Build a list of EC2 ids to remove
+  vars:
+    ids_to_remove: "{{ ec2.instances | map(attribute='instance_id') | list }}"
+  set_fact:
+      ids_to_remove: "{{ ids_to_remove }}"
+
+- name: Remove a list of instances EC2 ids
+  ec2:
+     state: absent
+     region: "{{ ec2_region }}"
+     wait: true
+     instance_ids: "{{ ids_to_remove }}"
+  when: ids_to_remove
+  # notify:
+  #   - rhsm_unregister
+  #   - insights_unregister

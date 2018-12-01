@@ -1,0 +1,26 @@
+- name: Gather facts for instances with name "{{ ec2_scope }}"
+  ec2_instance_facts:
+    region: "{{ ec2_region }}"
+    filters:
+      "tag:Name": "{{ ec2_scope }}"
+      "instance-state-name": running
+  register: ec2
+
+- name: Build a list of ips and hostnames
+  vars:
+    ips_to_add: "{{ ec2.instances | map(attribute='private_ip_address') | list }}"
+  set_fact:
+    ips_to_add: "{{ ips_to_add }}"
+
+- name: Add hosts to in-memory inventory
+  add_host:
+    name: "{{ item }}"
+    groups: "tag_Name_{{ ec2_scope }}"
+  with_items: "{{ ips_to_add }}"
+
+- name: Wait for SSH to come up
+  wait_for_connection:
+    timeout: 600
+    sleep: 15
+  delegate_to: "{{ item }}"
+  with_items: "{{ ips_to_add }}"
