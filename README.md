@@ -35,4 +35,4 @@ BSD
 Author Information
 ------------------
 
-Twitter: @automaticdavid,
+Twitter: @automaticdavid,  
