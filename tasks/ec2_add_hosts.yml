@@ -20,7 +20,7 @@
 
 - name: Build a list of groups based on tags
   set_fact:
-    tags: "{{ tags | default([]) }} + [ tag_{{item.key}}_{{item.value}} ] "
+    tags: "{{ tags | default([]) }} + [ 'tag_{{item.key}}_{{item.value}}' ]" 
   loop: "{{ ec2_instance_tags |dict2items  }}"
 
 - name: Add hosts to in-memory inventory
