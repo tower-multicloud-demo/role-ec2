@@ -15,7 +15,7 @@
 - name: Output private IPs allocated
   debug: 
     var: "{{ ips_to_add }}"
-  verbosity: 2
+    verbosity: 2
 
 - name: Build a list of groups based on tags
   set_fact:
