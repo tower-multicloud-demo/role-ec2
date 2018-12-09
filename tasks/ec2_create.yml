@@ -12,3 +12,4 @@
      instance_tags:
         Name: "{{ ec2_scope }}"
      group_id: "{{ ec2_groupid }}"
+     instance_tags: "{{ ec2_instance_tags }}"
