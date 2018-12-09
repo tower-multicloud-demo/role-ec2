@@ -3,6 +3,7 @@
     region: "{{ ec2_region }}"
     filters:
       "tag:Name": "{{ ec2_scope }}"
+      "tag:Role":  "{{ ec2_instance_tags.Role }}"
       "instance-state-name": running
   register: ec2
 
