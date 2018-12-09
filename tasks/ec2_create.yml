@@ -9,7 +9,5 @@
      assign_public_ip: "{{ ec2_assign_public_ip }}"
      wait: "{{ ec2_wait }}"
      count: "{{ ec2_count }}"
-     instance_tags:
-        Name: "{{ ec2_scope }}"
-     group_id: "{{ ec2_groupid }}"
      instance_tags: "{{ ec2_instance_tags }}"
+     group_id: "{{ ec2_groupid }}"
