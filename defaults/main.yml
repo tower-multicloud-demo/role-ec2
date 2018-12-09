@@ -14,4 +14,4 @@ ec2_key_name: "{{ ec2_key_name }}"
 ec2_assign_public_ip: false
 ec2_wait: true
 ec2_instance_tags:
-  - Name: "{{ scope }}"
+  Name: "{{ scope }}"
