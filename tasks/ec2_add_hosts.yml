@@ -12,9 +12,9 @@
   set_fact:
     ips_to_add: "{{ ips_to_add }}"
 
-- name: Output private IPs allocated
+- name: Display private IPs that were allocated
   debug: 
-    var: "{{ ips_to_add }}"
+    var: ips_to_add
     verbosity: 2
 
 - name: Build a list of groups based on tags
