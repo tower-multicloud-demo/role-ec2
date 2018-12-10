@@ -24,10 +24,8 @@
     ips_to_add: []
 
 - name: Build a list of ips and hostnames
-  vars:
-    ips_to_add: "{{ ec2.instances | map(attribute='private_ip_address') | list }}"
   set_fact:
-    ips_to_add: ips_to_add 
+    ips_to_add: "{{ ec2.instances | map(attribute='private_ip_address') | list }}"
 
 - name: Display private IPs that were allocated
   debug: 
