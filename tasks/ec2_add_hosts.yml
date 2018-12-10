@@ -1,7 +1,3 @@
-- debug: 
-    var: ec2_instance_tags.Role
-    verbosity: 2
-
 - name: Gather facts for instances with Name {{ ec2_scope }} and Role {{ ec2_instance_tags.Role }}
   ec2_instance_facts:
     region: "{{ ec2_region }}"
@@ -10,27 +6,10 @@
       "tag:Role":  "{{ ec2_instance_tags.Role }}"
       "instance-state-name": running
   register: ec2
-  
-- debug: 
-    var: ec2.instances 
-    verbosity: 2
-
-- debug: 
-    msg: "{{ ec2.instances | map(attribute='private_ip_address') | list }}"
-    verbosity: 2
-
-- name: Create list of IPs
-  set_fact:
-    ips_to_add: []
 
 - name: Build a list of ips and hostnames
   set_fact:
     ips_to_add: "{{ ec2.instances | map(attribute='private_ip_address') | list }}"
-
-- name: Display private IPs that were allocated
-  debug: 
-    var: ips_to_add
-    verbosity: 2
 
 - name: Create list of tags
   set_fact:
@@ -38,14 +17,11 @@
 
 - name: Build list of groups based on tags
   set_fact:
-    tags: "{{ tags }} + [ 'tag_{{item.key}}_{{item.value}}' ]" 
+    tags: "{{ tags }} + [ 'tag_{{item.key}}_{{item.value}}' ]"
   loop: "{{ ec2_instance_tags |dict2items  }}"
 
-- debug: 
-    msg: "{{ ec2_instance_tags |dict2items  }}"
-    verbosity: 2
-
-- debug: 
+- name: Display tags
+  debug:
     var: tags
     verbosity: 2
 
