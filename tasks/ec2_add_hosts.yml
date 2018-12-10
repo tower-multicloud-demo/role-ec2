@@ -2,10 +2,6 @@
     var: ec2_instance_tags.Role
     verbosity: 2
 
-- debug: 
-    var: ec2_instance_tags["Role"]
-    verbosity: 2
-
 - name: Gather facts for instances with Name {{ ec2_scope }} and Role {{ ec2_instance_tags.Role }}
   ec2_instance_facts:
     region: "{{ ec2_region }}"
@@ -14,6 +10,14 @@
       "tag:Role":  "{{ ec2_instance_tags.Role }}"
       "instance-state-name": running
   register: ec2
+  
+- debug: 
+    var: ec2.instances 
+    verbosity: 2
+
+- debug: 
+    msg: "{{ ec2.instances | map(attribute='private_ip_address') | list }}"
+    verbosity: 2
 
 - name: Build a list of ips and hostnames
   vars:
