@@ -1,3 +1,7 @@
+- debug: 
+  var: ec2_instance_tags.Role
+  verbosity: 2
+
 - name: Gather facts for instances with Name {{ ec2_scope }} and Role {{ ec2_instance_tags.Role }}
   ec2_instance_facts:
     region: "{{ ec2_region }}"
