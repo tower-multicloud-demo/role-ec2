@@ -19,6 +19,10 @@
     msg: "{{ ec2.instances | map(attribute='private_ip_address') | list }}"
     verbosity: 2
 
+- name: Create list of IPs
+  set_fact:
+    ips_to_add: []
+
 - name: Build a list of ips and hostnames
   vars:
     ips_to_add: "{{ ec2.instances | map(attribute='private_ip_address') | list }}"
