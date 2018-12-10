@@ -18,9 +18,13 @@
     var: ips_to_add
     verbosity: 2
 
-- name: Build a list of groups based on tags
+- name: Create list of tags
   set_fact:
-    tags: "{{ tags | default([]) }} + [ 'tag_{{item.key}}_{{item.value}}' ]" 
+    tags: []
+
+- name: Build list of groups based on tags
+  set_fact:
+    tags: "{{ tags }} + [ 'tag_{{item.key}}_{{item.value}}' ]" 
   loop: "{{ ec2_instance_tags |dict2items  }}"
 
 - debug: 
@@ -30,7 +34,7 @@
 - debug: 
     var: tags
     verbosity: 2
-    
+
 - name: Add hosts to in-memory inventory
   add_host:
     name: "{{ item }}"
