@@ -1,4 +1,4 @@
-- name: Gather facts for instances with Name {{ ec2_scope }} and Role {{ ec2_instance_tags.Role }}
+- name: Gather facts for instances with Name {{ ec2_scope }}
   ec2_instance_facts:
     region: "{{ ec2_region }}"
     filters:  "{{ ec2_lb_filters }}"
