@@ -1,10 +1,7 @@
 - name: Gather facts for instances with Name {{ ec2_scope }} and Role {{ ec2_instance_tags.Role }}
   ec2_instance_facts:
     region: "{{ ec2_region }}"
-    filters:
-      "tag:Name": "{{ ec2_scope }}"
-      "tag:Role":  "{{ ec2_instance_tags.Role }}"
-      "instance-state-name": running
+    filters:  "{{ ec2_lb_filters }}"
   register: ec2
 
 - name: Build a list of ips and hostnames
