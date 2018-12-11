@@ -2,7 +2,8 @@
 - name: Gather facts for instances with name {{ ec2_scope }}
   ec2_instance_facts:
     region:  "{{ ec2_region }}"
-    filters: "{{ ec2_lb_filters }}"
+    filters: 
+      ec2_lb_filters
   register: ec2
 
 - name: Build a list of ec2 instances IDs
