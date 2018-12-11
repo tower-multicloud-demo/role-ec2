@@ -1,6 +1,6 @@
 
 - debug: 
-    var: "{{ec2_lb_filters }}"
+    var: ec2_lb_filters
 
 - name: Gather facts for instances with Name {{ ec2_scope }}
   ec2_instance_facts:
