@@ -22,7 +22,7 @@
   elb_target_group:
     name: "{{ ec2_lb_target }}"
     protocol: http
-    port: 80
+    port: "{{ ec2_lb_target_port }}"
     vpc_id: "{{ ec2_vpc }}"
     region:  "{{ ec2_region }}"
     modify_targets: Yes
