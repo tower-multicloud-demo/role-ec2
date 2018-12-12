@@ -15,7 +15,7 @@
   vars:
     ids_and_ports: []
   set_fact:
-    ids_and_ports: "{{ ids_and_ports +  [ {'Id': item, 'Port': 80} ] }}"
+    ids_and_ports: "{{ ids_and_ports +  [ {'Id': item, 'Port': ec2_lb_target_port} ] }}"
   with_items: "{{ ids_to_add }}"
 
 - name: Add Instances to the load balancer target {{ ec2_lb_target }}
