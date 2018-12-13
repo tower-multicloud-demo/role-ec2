@@ -1,2 +1,6 @@
 ---
 # tasks file for ec2
+- name: 'Including AWS EC2 create tasks'
+  include_tasks: ec2_create.yml
+- name: 'Adding EC2 hosts to the in memory inventory'
+  include_tasks: ec2_add_hosts.yml
