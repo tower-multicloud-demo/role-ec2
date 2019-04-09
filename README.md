@@ -1,38 +1,15 @@
-Role Name
-=========
-
-Simple role for ec2 provsioning
-
-Requirements
-------------
-
-None
-
-Role Variables
---------------
-
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
-
-Dependencies
-------------
-
-None
-
-Example Playbook
-----------------
-
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
-
-License
--------
-
-BSD
-
-Author Information
-------------------
-
-Twitter: @automaticdavid,  
+---
+scope: stackdemo
+ec2_count: "1"
+ec2_scope : "{{ scope }}"
+ec2_delete: "{{ scope }}"
+ec2_region: "eu-central-1"
+ec2_size: "t2.micro"
+ec2_ami: "ami-069c6833c442cfe27"
+ec2_key_name: "grieger_ec2"
+ec2_sg: "demogroup"
+vpc_subnet_id: subnet-idgoeshere
+ec2_assign_public_ip: true
+ec2_wait: true
+ec2_instance_tags:
+  Name: "{{ scope }}"
