@@ -1,4 +1,3 @@
----
 scope: stackdemo
 ec2_count: "1"
 ec2_scope : "{{ scope }}"
