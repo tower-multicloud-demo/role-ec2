@@ -5,9 +5,9 @@
      region: "{{ ec2_region }}"
      instance_type: "{{ ec2_size }}"
      image: "{{ ec2_ami }}"
-     vpc_subnet_id: "{{ ec2_subnetid }}"
+     group: "{{ ec2_sg }}"
      assign_public_ip: "{{ ec2_assign_public_ip }}"
      wait: "{{ ec2_wait }}"
      count: "{{ ec2_count }}"
      instance_tags: "{{ ec2_instance_tags }}"
-     group_id: "{{ ec2_groupid }}"
+  register: ec2
