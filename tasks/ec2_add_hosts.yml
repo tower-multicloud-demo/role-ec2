@@ -5,7 +5,7 @@
 - name: Add hosts to in-memory inventory
   add_host:
     name: "{{ item }}"
-    groups: "{{ tags }}"
+    groups: "demogroup"
   with_items: "{{ ips_to_add }}"
 
 - name: Wait for SSH to come up
