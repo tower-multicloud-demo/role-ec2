@@ -1,9 +1,9 @@
 ---
 - name: Create a security group
   ec2_group:
-    name: "{{ security_group }}"
+    name: "{{ ec2_sg }}"
     description: Security group
-    region: "{{ aws_region }}"
+    region: "{{ ec2_region }}"
     rules:
       - proto: tcp
         from_port: 22
