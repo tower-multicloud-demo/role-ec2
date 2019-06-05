@@ -6,7 +6,7 @@
      instance_type: "{{ ec2_size }}"
      image: "{{ ec2_ami }}"
      group: "{{ ec2_sg }}"
-     vpc_subnet_id: "{{ vpc_subnet_id }}"
+    # vpc_subnet_id: "{{ vpc_subnet_id }}"
      assign_public_ip: "{{ ec2_assign_public_ip }}"
      wait: "{{ ec2_wait }}"
      count: "{{ ec2_count }}"
