@@ -1,4 +1,5 @@
 ---
+Vars:
 
 ----
 scope: stackdemo
